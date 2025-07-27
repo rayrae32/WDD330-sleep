@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Outside | Checkout</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="../js/cartItems.js" type="module" defer></script>
+</head>
+
+<body>
+  <header id="main-header"></header>
+  <main class="divider">
+    <section class="products">
+      <h2>Review & Place your Order</h2>
+      <div class="checkout-container">
+        <!-- Checkout Form -->
+        <form id="checkout-form">
+          <fieldset>
+            <legend>Customer Name</legend>
+            <label>
+              First Name
+              <input type="text" name="firstName" required />
+            </label>
+            <label>
+              Last Name
+              <input type="text" name="lastName" required />
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Address</legend>
+            <label>
+              Street Address
+              <input type="text" name="street" required />
+            </label>
+            <label>
+              City
+              <input type="text" name="city" required />
+            </label>
+            <label>
+              State
+              <input type="text" name="state" maxlength="2" required />
+            </label>
+            <label>
+              Zip Code
+              <input type="text" name="zip" pattern="\d{5}" maxlength="5" required />
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <label>
+              Credit Card Number
+              <input type="text" name="ccnum" pattern="\d{13,16}" maxlength="16" inputmode="numeric" required />
+            </label>
+            <label>
+              Expiration Date
+              <input type="month" name="exp" required />
+            </label>
+            <label>
+              Security Code
+              <input type="text" name="cvv" pattern="\d{3,4}" maxlength="4" inputmode="numeric" required />
+            </label>
+          </fieldset>
+          <button type="submit">Checkout</button>
+        </form>
+        <!-- Order Summary -->
+        <aside class="order-summary">
+          <h3>Order Summary</h3>
+          <ul>
+            <li>Subtotal: <span id="summary-subtotal">$0.00</span></li>
+            <li>Tax: <span id="summary-tax">$0.00</span></li>
+            <li>Shipping Estimate: <span id="summary-shipping">$0.00</span></li>
+            <li><strong>Order Total: <span id="summary-total">$0.00</span></strong></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+    <div class="newsletter-icon" onclick="document.getElementById('newsletter-dialog').showModal()">
+        <img src="/public/images/9133500_newsletter_icon.svg" alt="newsletter icon">
+      </div>
+
+      <!-- newsletter-modal.html -->
+        <dialog id="newsletter-dialog">
+          <form id="newsletter-form" method="dialog" class="newsletter-form">
+            <button type="button" class="close" onclick="closeNewsletterModal()">&times;</button>
+            <h2>Subscribe to Our Newsletter</h2>
+            <input type="email" id="email-input" placeholder="Your email" required>
+            <button type="submit">Subscribe</button>
+            <p id="thank-you-message" style="display: none; color: lightgreen; margin-top: 1rem;">
+              ✅ Thanks for subscribing!
+            </p>
+          </form>
+        </dialog>
+
+  <footer id="main-footer"></footer>
+  <script type="module" src="../js/main.js"></script>
+  <script type="module">
+    import CheckoutProcess from '../js/CheckoutProcess.mjs';
+
+    const checkout = new CheckoutProcess('so-cart', '.order-summary');
+    checkout.init();
+
+    document.querySelector('input[name="zip"]').addEventListener('change', () => {
+      checkout.calculateOrderTotal();
+    });
+
+    document.getElementById('checkout-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        alert('Please fill out all fields correctly.');
+        return;
+      }
+      checkout.calculateOrderTotal();
+      try {
+        const result = await checkout.checkout(this);
+        alert('Order placed! Confirmation: ' + JSON.stringify(result));
+        // Optionally, redirect or clear cart here
+      } catch (err) {
+        alert('Checkout failed: ' + err.message);
+      }
+    });
+
+    // const myForm = document.getElementById('checkout-form');
+    // if (!myForm.checkValidity()) {
+    //   myForm.reportValidity();
+    //   return;
+    // }
+    // checkout.checkout(myForm);
+  </script>
+</body>
+
+</html>

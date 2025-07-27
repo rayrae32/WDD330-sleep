@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sleep Outside | Marmot Ajax 3 person tent</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <script src="../js/product.js" type="module"></script>
+  <script src="../js/cartItems.js" type="module" defer></script>
+</head>
+
+<body>
+  <header id="main-header">
+
+  </header>
+
+  <main class="divider">
+    <section class="product-detail">
+      <h3 id="card__brand"></h3>
+
+      <h2 id="card__name"></h2>
+
+      <img
+        id="product-detail-img"
+        src=""
+        alt="" />
+
+      <p id="product-card__price"></p>
+
+      <p id="product__color"></p>
+
+      <p id="product__description">
+        
+      </p>
+
+      <div id="product-detail__add">
+        <button id="addToCart">Add to Cart</button>
+        <button id="addToWishlist">Add to Wishlist</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="newsletter-icon" onclick="document.getElementById('newsletter-dialog').showModal()">
+        <img src="/public/images/9133500_newsletter_icon.svg" alt="newsletter icon">
+      </div>
+
+      <!-- newsletter-modal.html -->
+        <dialog id="newsletter-dialog">
+          <form id="newsletter-form" method="dialog" class="newsletter-form">
+            <button type="button" class="close" onclick="closeNewsletterModal()">&times;</button>
+            <h2>Subscribe to Our Newsletter</h2>
+            <input type="email" id="email-input" placeholder="Your email" required>
+            <button type="submit">Subscribe</button>
+            <p id="thank-you-message" style="display: none; color: lightgreen; margin-top: 1rem;">
+              ✅ Thanks for subscribing!
+            </p>
+          </form>
+        </dialog>
+
+  <footer id="main-footer">
+
+  </footer>
+  <script type="module" src="../js/main.js"></script>
+  <script type="module" src="../js/ProductDetails.mjs"></script>
+</body>
+
+</html>

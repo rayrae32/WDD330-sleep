@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Home</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <header id="main-header">
+
+    </header>
+    <main class="divider">
+      <div class="hero">
+        <img
+          src="../images/banner-sm.jpg"
+          srcset="../images/banner-sm.jpg 500w, ../images/banner.jpg"
+          alt="image of a high mountain lake"
+        />
+        <div class="logo logo--square">
+          <img src="../images/noun_Tent_2517.svg" alt="tent image for logo" />
+          <div>Sleep<span class="highlight">Outside</span></div>
+        </div>
+        <div class="mission">
+          <p>
+            Our mission is to provide you with everything you need to sleep
+            outside comfortably at an affordable price.
+          </p>
+        </div>
+      </div>
+
+      <div class="categories">
+        <a href="?category=tents">
+            <div class="category-tents">
+                <img src="../public/images/categoies/category-tents.svg" alt="Tents">
+                <h3>Tents</h3>
+            </div>
+        </a>
+        <a href="?category=backpacks">
+            <div class="category-backpacks">
+                <img src="../public/images/categoies/category-backpacks.svg" alt="Backpacks">
+                <h3>Backpacks</h3>
+            </div>
+        </a>
+        <a href="?category=sleeping-bags">
+            <div class="category-sleepingbags">
+                <img src="../public/images/categoies/category-sleepingbags.svg" alt="Sleeping Bags">
+                <h3>Sleeping Bags</h3>
+            </div>
+        </a>
+        <a href="?category=hammocks">
+            <div class="category-hammocks">
+                <img src="../public/images/categoies/category-hammocks.svg" alt="Hammocks">
+                <h3>Hammocks</h3>
+            </div>
+        </a>
+      </div>
+
+      <section class="products">
+        <h2>Top Products: <span class="title highlight"></span></h2>
+        <ul class="product-lists"></ul>
+      </section>
+      <div class="newsletter-icon" onclick="document.getElementById('newsletter-dialog').showModal()">
+        <img src="/public/images/9133500_newsletter_icon.svg" alt="newsletter icon">
+      </div>
+
+      <!-- newsletter-modal.html -->
+        <dialog id="newsletter-dialog">
+          <form id="newsletter-form" method="dialog" class="newsletter-form">
+            <button type="button" class="close" onclick="closeNewsletterModal()">&times;</button>
+            <h2>Subscribe to Our Newsletter</h2>
+            <input type="email" id="email-input" placeholder="Your email" required>
+            <button type="submit">Subscribe</button>
+            <p id="thank-you-message" style="display: none; color: lightgreen; margin-top: 1rem;">
+              ✅ Thanks for subscribing!
+            </p>
+          </form>
+        </dialog>
+
+
+    <footer id="main-footer">
+
+    </footer>
+
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/product-listing.js"></script>
+    <script src="../js/cartItems.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+namibia-safari-guide/
+├── public/
+│   ├── images/
+│   ├── favicon.ico
+│   └── index.html
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── utils/
+│   ├── App.jsx
+│   └── index.js
+├── .gitignore
+├── package.json
+└── vite.config.js
