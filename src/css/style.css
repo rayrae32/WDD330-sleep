@@ -147,8 +147,8 @@ button {
 /* Wishlist icon styles */
 
 .wishlist {
-  padding-top: .75em;
-  padding-right: .5em;
+  padding-top: 0.75em;
+  padding-right: 0.5em;
   position: relative;
   text-align: center;
 }
@@ -158,7 +158,7 @@ button {
 }
 
 .wishlist:hover svg {
-    filter: brightness(120%)
+  filter: brightness(120%);
 }
 
 /* End wishlist icon styles */
@@ -292,7 +292,8 @@ button {
   margin: 0 0.1em;
 }
 
-.cart-card__quantity__down:hover, .cart-card__quantity__up:hover {
+.cart-card__quantity__down:hover,
+.cart-card__quantity__up:hover {
   background-color: #9c4901;
 }
 
@@ -361,7 +362,8 @@ button {
   margin: 0 0.1em;
 }
 
-.wishlist-card__quantity__down:hover, .wishlist-card__quantity__up:hover {
+.wishlist-card__quantity__down:hover,
+.wishlist-card__quantity__up:hover {
   background-color: #9c4901;
 }
 
@@ -395,7 +397,6 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
-
 
 /* Cart style */
 
@@ -620,7 +621,13 @@ footer {
   gap: 3em;
 }
 
-.categories :is(.category-tents, .category-sleeping-bags, .category-backpacks, .category-hammocks) {
+.categories
+  :is(
+    .category-tents,
+    .category-sleeping-bags,
+    .category-backpacks,
+    .category-hammocks
+  ) {
   text-align: center;
   margin: 1em;
   cursor: pointer;
@@ -655,7 +662,7 @@ a {
   min-width: 320px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 12px rgba(80,80,80,0.08);
+  box-shadow: 0 2px 12px rgba(80, 80, 80, 0.08);
   padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
@@ -711,7 +718,7 @@ a {
   font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(80,80,80,0.08);
+  box-shadow: 0 2px 8px rgba(80, 80, 80, 0.08);
   transition: background 0.2s;
 }
 
@@ -726,7 +733,7 @@ a {
   min-width: 260px;
   background: #f9f7f3;
   border-radius: 10px;
-  box-shadow: 0 2px 12px rgba(80,80,80,0.06);
+  box-shadow: 0 2px 12px rgba(80, 80, 80, 0.06);
   padding: 2rem 1.5rem;
   margin-top: 0.5rem;
 }
@@ -782,7 +789,7 @@ input:invalid {
   background: #fff0f0;
 }
 
-.newsletter-icon img{
+.newsletter-icon img {
   width: 50px;
   position: fixed;
   bottom: 20px;
@@ -813,10 +820,15 @@ dialog#newsletter-dialog::backdrop {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translate(-50%, -60%); }
-  to   { opacity: 1; transform: translate(-50%, -50%); }
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
-
 
 .newsletter-form input[type="email"] {
   width: 100%;
@@ -874,7 +886,7 @@ dialog#newsletter-dialog::backdrop {
   background: #f6fff6;
   border: 2px solid #b6e2b6;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
   text-align: center;
   animation: fadeIn 0.8s;
 }
@@ -901,7 +913,7 @@ dialog#newsletter-dialog::backdrop {
   font-weight: 600;
   font-size: 1rem;
   transition: background 0.2s;
-  box-shadow: 0 2px 8px rgba(46,125,50,0.08);
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.08);
 }
 
 .success-message .button:hover {
@@ -909,6 +921,12 @@ dialog#newsletter-dialog::backdrop {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px);}
-  to { opacity: 1; transform: translateY(0);}
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

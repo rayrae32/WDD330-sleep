@@ -16,17 +16,19 @@ function renderCartContents() {
   }
 
   numberOfCartItems();
-  const htmlItems = cartItems.map((item, index) => cartItemTemplate(item, index));
+  const htmlItems = cartItems.map((item, index) =>
+    cartItemTemplate(item, index),
+  );
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   displayCartTotal(cartItems);
   setupEventListeners(); // **Ensure event listeners reattach after rerender**
-};
+}
 
 function displayCartTotal(cartItems) {
   const total = cartItems.reduce(
     (sum, item) => sum + parseFloat(item.FinalPrice) * (item.quantity || 1),
-    0
+    0,
   );
   document.getElementById("cart-total-amount").textContent = total.toFixed(2);
 }
@@ -59,7 +61,6 @@ function setupEventListeners() {
   }
 }
 
-
 function updateQuantityHandler(event) {
   const index = parseInt(event.target.dataset.index, 10);
   let change;
@@ -69,13 +70,16 @@ function updateQuantityHandler(event) {
     change = -1; // Decrease quantity
   }
   updateQuantity(index, change);
-};
+}
 
 function updateQuantity(index, change) {
   const cartItems = getLocalStorage("so-cart");
 
   if (cartItems[index]) {
-    cartItems[index].quantity = Math.max(1, (cartItems[index].quantity || 1) + change);
+    cartItems[index].quantity = Math.max(
+      1,
+      (cartItems[index].quantity || 1) + change,
+    );
     localStorage.setItem("so-cart", JSON.stringify(cartItems));
     renderCartContents();
     setupEventListeners(); // **Ensure listeners reattach after updating quantity**
@@ -93,7 +97,9 @@ function moveToWishlist(index) {
   const item = cartItems[index];
 
   // Check if item already in wishlist
-  const existing = wishlistItems.find(wishlistItem => wishlistItem.Id === item.Id);
+  const existing = wishlistItems.find(
+    (wishlistItem) => wishlistItem.Id === item.Id,
+  );
   if (existing) {
     existing.quantity += item.quantity || 1;
   } else {
@@ -113,7 +119,7 @@ function moveToWishlist(index) {
 function removeItemHandler(event) {
   const index = parseInt(event.target.dataset.index, 10);
   removeFromCart(index);
-};
+}
 
 function removeFromCart(index) {
   const cartItems = getLocalStorage("so-cart");
@@ -125,7 +131,8 @@ function removeFromCart(index) {
 }
 
 function cartItemTemplate(item, index) {
-  const colorName = item.Colors && item.Colors.length > 0 ? item.Colors[0].ColorName : '';
+  const colorName =
+    item.Colors && item.Colors.length > 0 ? item.Colors[0].ColorName : "";
   const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
       <img src="${item.Image}" alt="${item.Name}" />
@@ -147,7 +154,7 @@ function cartItemTemplate(item, index) {
   </li>`;
 
   return newItem;
-};
+}
 
 // Initialize the cart display when the page loads and set up event listeners
 document.addEventListener("DOMContentLoaded", () => {

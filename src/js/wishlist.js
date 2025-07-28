@@ -13,31 +13,38 @@ function renderCartContents() {
     return;
   }
 
-  const htmlItems = wishlistItems.map((item, index) => cartItemTemplate(item, index));
+  const htmlItems = wishlistItems.map((item, index) =>
+    cartItemTemplate(item, index),
+  );
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   displayCartTotal(wishlistItems);
   setupEventListeners(); // **Ensure event listeners reattach after rerender**
-};
+}
 
 function displayCartTotal(wishlistItems) {
   const total = wishlistItems.reduce(
     (sum, item) => sum + parseFloat(item.FinalPrice) * (item.quantity || 1),
-    0
+    0,
   );
-  document.getElementById("wishlist-total-amount").textContent = total.toFixed(2);
+  document.getElementById("wishlist-total-amount").textContent =
+    total.toFixed(2);
 }
 
 function setupEventListeners() {
-  document.querySelectorAll(".wishlist-card__quantity__down").forEach((button) => {
-    button.removeEventListener("click", updateQuantityHandler);
-    button.addEventListener("click", updateQuantityHandler);
-  });
+  document
+    .querySelectorAll(".wishlist-card__quantity__down")
+    .forEach((button) => {
+      button.removeEventListener("click", updateQuantityHandler);
+      button.addEventListener("click", updateQuantityHandler);
+    });
 
-  document.querySelectorAll(".wishlist-card__quantity__up").forEach((button) => {
-    button.removeEventListener("click", updateQuantityHandler);
-    button.addEventListener("click", updateQuantityHandler);
-  });
+  document
+    .querySelectorAll(".wishlist-card__quantity__up")
+    .forEach((button) => {
+      button.removeEventListener("click", updateQuantityHandler);
+      button.addEventListener("click", updateQuantityHandler);
+    });
 
   document.querySelectorAll(".wishlist-card__remove").forEach((button) => {
     button.removeEventListener("click", removeItemHandler);
@@ -50,7 +57,6 @@ function setupEventListeners() {
   });
 }
 
-
 function updateQuantityHandler(event) {
   const index = parseInt(event.target.dataset.index, 10);
   let change;
@@ -60,13 +66,16 @@ function updateQuantityHandler(event) {
     change = -1; // Decrease quantity
   }
   updateQuantity(index, change);
-};
+}
 
 function updateQuantity(index, change) {
   const cartItems = getLocalStorage("so-wishlist");
 
   if (cartItems[index]) {
-    cartItems[index].quantity = Math.max(1, (cartItems[index].quantity || 1) + change);
+    cartItems[index].quantity = Math.max(
+      1,
+      (cartItems[index].quantity || 1) + change,
+    );
     localStorage.setItem("so-wishlist", JSON.stringify(cartItems));
     renderCartContents();
     setupEventListeners(); // **Ensure listeners reattach after updating quantity**
@@ -84,8 +93,8 @@ function moveToCart(index) {
   const item = wishlistItems[index];
 
   // Check if item already in cart
-  
-  const existing = cartItems.find(cartItem => cartItem.Id === item.Id);
+
+  const existing = cartItems.find((cartItem) => cartItem.Id === item.Id);
   if (existing) {
     existing.quantity += item.quantity || 1;
   } else {
@@ -105,7 +114,7 @@ function moveToCart(index) {
 function removeItemHandler(event) {
   const index = parseInt(event.target.dataset.index, 10);
   removeFromCart(index);
-};
+}
 
 function removeFromCart(index) {
   const cartItems = getLocalStorage("so-wishlist");
@@ -116,7 +125,8 @@ function removeFromCart(index) {
 }
 
 function cartItemTemplate(item, index) {
-  const colorName = item.Colors && item.Colors.length > 0 ? item.Colors[0].ColorName : '';
+  const colorName =
+    item.Colors && item.Colors.length > 0 ? item.Colors[0].ColorName : "";
   const newItem = `<li class="wishlist-card divider">
     <a href="#" class="wishlist-card__image">
       <img src="${item.Image}" alt="${item.Name}" />
@@ -138,7 +148,7 @@ function cartItemTemplate(item, index) {
   </li>`;
 
   return newItem;
-};
+}
 
 // Initialize the cart display when the page loads and set up event listeners
 document.addEventListener("DOMContentLoaded", () => {
